@@ -1,9 +1,10 @@
 """
 writingディレクトリにある.md(マークダウンファイル)をhtmlに変換し、カテゴリーディレクトリに配置する
 """
-import markdown
 import glob
-from os import path
+import shutil
+import subprocess
+from os import path, mkdir
 
 WRITING_PATH = 'writing'
 
@@ -29,6 +30,7 @@ class ConvertMarkDownToHTML:
         初期化関数
         """
         self.md_file_path = get_article_md_file()
+        self.file_name = None  # 拡張子を含まないファイル名
         self.md_content = None  # マークダウン形式記事文字列
         self.article_title = None  # 記事タイトル
         self.article_category = None  # 記事カテゴリー
@@ -42,6 +44,12 @@ class ConvertMarkDownToHTML:
         with open(self.md_file_path, 'r') as f:
             self.md_content = f.read()
 
+    def _get_filename(self) -> None:
+        """
+        拡張子を含まないファイル名を取得する
+        """
+        self.file_name = path.splitext(path.basename(self.md_file_path))[0]
+
     def _get_title(self) -> None:
         """
         記事タイトルを取得する(マークダウンファイルの１行目)
@@ -50,48 +58,63 @@ class ConvertMarkDownToHTML:
 
     def _get_category(self) -> None:
         """
-        記事カテゴリーを取得する(マークダウンファイルの2行目の１つ目)
+        記事カテゴリーを取得する(マークダウンファイルの3行目の１つ目)
         """
-        tags = self.md_content.split('\n')[1].split(' ')
+        tags = self.md_content.split('\n')[2].split(' ')
         self.article_category = tags[0].strip('`')
 
-    def _convert_md_to_html(self):
+    def _convert_md_to_html(self) -> None:
         """
-        md文字列をhtml文字列に変換する
+        pandocコマンドを使ってmdファイルをhtmlファイルに変換する
+        参考: https://dev.classmethod.jp/articles/pandoc-markdown2html/
         """
-        self.html_content = markdown.markdown(self.md_content, extentions=["fenced_code"])
-        self.html_content = self.html_content.convert('''
-        ```css
-        p { color: red }
-        ```
-        ''')
+        # カテゴリーディレクトリが存在しない場合は作成する
+        if not path.exists(self.article_category):
+            mkdir(self.article_category)
 
-    def _create_html_file(self):
+        subprocess.run([
+            "pandoc", "-s", "--toc", "--template=template/template.html",
+            f"{self.md_file_path}", "-o", f"{self.article_category}/{self.file_name}.html"
+        ])
+
+    def _backup_md_file(self):
         """
-        カテゴリーディレクトリにhtmlを作成する
+        writingのmdファイルをバックアップする
+        backup/category/xx.md
         """
-        file_name = path.splitext(path.basename(self.md_file_path))[0]
-        with open(path.join(self.article_category, f"{file_name}.html"), 'w') as f:
-            f.write(self.html_content)
+        # カテゴリーディレクトリが存在しない場合は作成する
+        backup_path = path.join('backup', self.article_category)
+        if not path.exists(backup_path):
+            mkdir(backup_path)
+        # バックアップ
+        shutil.move(self.md_file_path, backup_path)
 
     def execute(self):
         """
         ConvertMarkDownToHTMLのメイン関数
         """
         self._read_article()
+        self._get_filename()
         self._get_title()
         self._get_category()
         self._convert_md_to_html()
-        self._create_html_file()
+        self._backup_md_file()
+        url = f"https://diagonal-m.github.io/{self.article_category}/{self.file_name}.html"
+
+        return self.article_title, url
 
 
 def main():
     """
     メイン関数
     """
+    # 記事が存在しないときは処理を終える
+    if len(glob.glob(path.join(WRITING_PATH, '*'))) == 0:
+        return
+
     convert_md_html = ConvertMarkDownToHTML()
-    convert_md_html.execute()
-    print(glob.glob('test/*'))
+    title, url = convert_md_html.execute()
+    print(title, url)
 
 
 if __name__ == '__main__':
