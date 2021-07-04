@@ -19,7 +19,7 @@ jobs:
 
     - name: Run the Docker image
       run: |
-        docker run -i writing_article:latest
+        docker run -i -v $(pwd):/tmp writing_article:latest
 
     - name: git setting
       run: |
@@ -28,17 +28,14 @@ jobs:
 
     - name: git add
       run: |
-        git status
         git add .
 
     - name: git commit
       run: |
-        git status
         git commit -m "post"
 
     - name: git pull
       run: |
-        git status
         git pull
 
     - name: git push
