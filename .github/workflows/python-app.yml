@@ -26,9 +26,18 @@ jobs:
         git config --local user.name "satoichi"
         git config --local user.email "3101taichi@gmail.com"
 
-    - name: Commit & Push
+    - name: git add
       run: |
         git add .
-        git commit -m "post" -a
+
+    - name: git commit
+      run: |
+        git commit -m "post"
+
+    - name: git pull
+      run: |
         git pull
-        git push
+
+    -name: git push
+     run: |
+       git push
