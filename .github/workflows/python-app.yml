@@ -20,11 +20,14 @@ jobs:
     - name: Run the Docker image
       run: |
         docker run -i writing_article:latest
+        ls test
 
-    - name: Commit and Push
+    - name: git setting
       run: |
-        git config user.name "diagonal-m"
-        git config user.email 3101taichi@gmail.com
+        git config --local user.email "3101taichi@gmail.com"
+        git config --local user.name "satoichi"
+
+    - name: Commit & Push
         git add .
         git commit -m "post"
         git pull
