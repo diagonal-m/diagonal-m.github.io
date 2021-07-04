@@ -41,6 +41,6 @@ jobs:
         git status
         git pull
 
-    -name: git push
+    - name: git push
      run: |
        git push
