@@ -23,8 +23,8 @@ jobs:
 
     - name: git setting
       run: |
-        git config --local user.email "3101taichi@gmail.com"
         git config --local user.name "satoichi"
+        git config --local user.email "3101taichi@gmail.com"
 
     - name: Commit & Push
       run: |
