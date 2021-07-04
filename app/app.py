@@ -86,7 +86,7 @@ def main():
     """
     convert_md_html = ConvertMarkDownToHTML()
     convert_md_html.execute()
-    print(glob.glob('test'))
+    print(glob.glob('test/*'))
 
 
 if __name__ == '__main__':
