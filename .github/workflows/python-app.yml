@@ -28,6 +28,7 @@ jobs:
         git config --local user.name "satoichi"
 
     - name: Commit & Push
+      run: |
         git add .
         git commit -m "post"
         git pull
