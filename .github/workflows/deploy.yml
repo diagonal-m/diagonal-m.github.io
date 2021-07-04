@@ -1,0 +1,29 @@
+name: DeployArticle
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build -f Dockerfile -t writing_article --no-cache .
+
+    - name: Run the Docker image
+      run: |
+        docker run -i writing_article:latest
+
+    - name: Commit and Push
+        git config user.name "satoichi"
+        git config user.email 3101taichi@gmail.com
+        git add .
+        git commit -m "post"
+        git pull
+        git push
