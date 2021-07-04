@@ -20,7 +20,6 @@ jobs:
     - name: Run the Docker image
       run: |
         docker run -i writing_article:latest
-        ls test
 
     - name: git setting
       run: |
@@ -30,6 +29,6 @@ jobs:
     - name: Commit & Push
       run: |
         git add .
-        git commit -m "post"
+        git commit -m "post" -a
         git pull
         git push
