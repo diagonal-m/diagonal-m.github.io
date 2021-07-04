@@ -86,10 +86,6 @@ def main():
     """
     convert_md_html = ConvertMarkDownToHTML()
     convert_md_html.execute()
-    print(convert_md_html.md_content)
-    print(convert_md_html.article_title)
-    print(convert_md_html.article_category)
-    print(convert_md_html.html_content)
 
 
 if __name__ == '__main__':

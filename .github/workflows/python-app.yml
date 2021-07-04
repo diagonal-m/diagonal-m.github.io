@@ -23,7 +23,7 @@ jobs:
 
     - name: Commit and Push
       run: |
-        git config user.name "satoichi"
+        git config user.name "diagonal-m"
         git config user.email 3101taichi@gmail.com
         git add .
         git commit -m "post"
