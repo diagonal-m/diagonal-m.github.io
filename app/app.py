@@ -59,7 +59,12 @@ class ConvertMarkDownToHTML:
         """
         md文字列をhtml文字列に変換する
         """
-        self.html_content = markdown.markdown(self.md_content, extentions=["gfm"])
+        self.html_content = markdown.markdown(self.md_content, extentions=["fenced_code"])
+        self.html_content = self.html_content.convert('''
+        ```css
+        p { color: red }
+        ```
+        ''')
 
     def _create_html_file(self):
         """
