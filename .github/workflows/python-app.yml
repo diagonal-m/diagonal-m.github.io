@@ -2,7 +2,8 @@ name: DeployArticle
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
 
@@ -21,6 +22,7 @@ jobs:
         docker run -i writing_article:latest
 
     - name: Commit and Push
+      run: |
         git config user.name "satoichi"
         git config user.email 3101taichi@gmail.com
         git add .
