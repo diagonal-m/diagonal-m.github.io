@@ -28,14 +28,17 @@ jobs:
 
     - name: git add
       run: |
+        git status
         git add .
 
     - name: git commit
       run: |
+        git status
         git commit -m "post"
 
     - name: git pull
       run: |
+        git status
         git pull
 
     -name: git push
