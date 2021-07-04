@@ -10,6 +10,6 @@ ENV TZ Asia/Tokyo
 COPY . /tmp
 WORKDIR /tmp
 
-RUN pip3 install --upgrade pip && pip3 install markdown
+RUN pip3 install --upgrade pip && pip3 install markdown py-gfm Pygments
 
 CMD ["python3", "app/app.py"]
