@@ -1,8 +1,8 @@
-# 実験用マークダウン
+# 【Docker】リモートサーバでjupyter notebook
 
 `docker` `python` `jupyter notebook` `リモート`
 
-これは実験用のマークダウンファイルです。
+リモートサーバーで起動したjupyter notebookをローカルのブラウザで開けるようにする
 
 
 
@@ -167,3 +167,4 @@ or http://127.0.0.1:8887/?token=35709607237510c97d1e42e90abb1fa39d769112478d13c3
 
 
 jupyter notebookからtokenの入力を求められるため入力
+
