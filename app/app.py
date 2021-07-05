@@ -70,7 +70,7 @@ class ConvertMarkDownToHTML:
         """
         記事の説明を取得
         """
-        self.description = self.md_content.split('\n')[4].split()
+        self.description = self.md_content.split('\n')[4].strip()
 
     def _convert_md_to_html(self) -> None:
         """
