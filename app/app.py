@@ -6,7 +6,7 @@ import shutil
 import subprocess
 from os import path, mkdir, makedirs
 
-WRITING_PATH = 'writing'
+WRITING_PATH = '../writing'
 
 
 def get_article_md_file() -> str:
@@ -83,7 +83,7 @@ class ConvertMarkDownToHTML:
         backup/category/xx.md
         """
         # カテゴリーディレクトリが存在しない場合は作成する
-        backup_path = path.join('backup', self.article_category)
+        backup_path = path.join('../backup', self.article_category)
         if not path.exists(backup_path):
             makedirs(backup_path)
         # バックアップ
