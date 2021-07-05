@@ -87,7 +87,7 @@ class ConvertMarkDownToHTML:
         #if not path.exists(backup_path):
         #    mkdir(backup_path)
         # バックアップ
-        shutil.move(self.md_file_path, f"{backup_path}/{self.file_name}.md")
+        shutil.move(self.md_file_path, f"{backup_path}/")
 
     def execute(self):
         """
