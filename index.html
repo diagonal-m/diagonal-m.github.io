@@ -14,6 +14,33 @@
             width:100%;                                            /* 横幅のサイズを指定  */
             height:300px;
         }
+        h2 {
+            padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+            color: #494949;/*文字色*/
+            background: #f4f4f4;/*背景色*/
+            border-left: solid 5px #7db4e6;/*左線*/
+            border-bottom: solid 3px #d7d7d7;/*下線*/
+        }
+        #content {
+            width: 60%;
+            margin: 10px auto;
+            overflow-x: hidden;
+            flex: 1;
+        }
+        .card {
+            background-color: white; /* 色変更 */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            border-radius:10px;
+            border:1px solid #f5f5f5;
+            margin: 5px auto;
+            display: inline-block;
+            width: 100%;
+            transition: all 250ms 0ms ease;
+        }
+        .card:hover {
+            background-color: lightcyan;
+            box-shadow: 0 0 5px -1px gray;
+        }
     </style>
 </head>
 <body>
@@ -34,7 +61,7 @@
               <a class="nav-link" href="#">Git</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Docker</a>
+              <a class="nav-link" href="#docker">Docker</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Web</a>
@@ -48,5 +75,15 @@
     </div>
 </nav>
 <header></header>
+<div id="content">
+    <h2 id="docker">Docker</h2>
+    <div class="card">
+        <div class="card-body" onclick="location = 'https://diagonal-m.github.io/docker/docker_remote_jupyter.html';">
+            <h6 class="card-subtitle mb-2 text-muted">2021年7月3日/Docker</h6>
+            <h5 class="card-title">【Docker】リモートサーバでjupyter notebook</h5>
+            <p class="card-text">リモードサーバーで起動したjupyter notebookをローカルのブラウザで開けるようにする</p>
+        </div>
+</div>
+</div>
 </body>
 </html>
