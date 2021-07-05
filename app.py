@@ -84,10 +84,10 @@ class ConvertMarkDownToHTML:
         """
         # カテゴリーディレクトリが存在しない場合は作成する
         backup_path = path.join('backup', self.article_category)
-        if not path.exists(backup_path):
-            mkdir(backup_path)
+        #if not path.exists(backup_path):
+        #    mkdir(backup_path)
         # バックアップ
-        shutil.move(self.md_file_path, backup_path)
+        shutil.move(self.md_file_path, f"{backup_path}/{self.file_name}.md")
 
     def execute(self):
         """
