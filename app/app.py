@@ -111,17 +111,18 @@ class ConvertMarkDownToHTML:
         self._backup_md_file()
         url = f"https://diagonal-m.github.io/{self.article_category}/{self.file_name}.html"
 
-        return self.article_title, url, self.article_category, self.description
+        return self.file_name, self.article_title, url, self.article_category, self.description
 
 
 class CreateIndex:
     """
     indexページを作成するためのクラス
     """
-    def __init__(self, title, url, category, description):
+    def __init__(self, file_name, title, url, category, description):
         """
         初期化関数
         """
+        self.file_name = file_name
         self.title = title
         self.url = url
         self.category = category
@@ -151,7 +152,8 @@ class CreateIndex:
         """
         新しく追加された記事の情報をcategory.jsonに書き込む
         """
-        self.parts_json[self.category][self.title] = {
+        self.parts_json[self.category][self.file_name] = {
+            "title": self.title,
             "date": datetime.today().strftime("%Y年%m月%d日"),
             "category": self.category,
             "description": self.description,
@@ -166,16 +168,16 @@ class CreateIndex:
         """
         with open("app/base.html", 'r') as f:
             base_html = f.read()
-        h2_base = ' <h2 id="{category}">{category}</h2>\n'
+        h2_base = '<h2 id="{category}">{category}</h2>\n'
         parts = ""
         for category, articles in self.parts_json.items():
             html_parts = h2_base.format(category=category)
-            for title, article_info in articles.items():
+            for file_name, article_info in articles.items():
                 html_parts += self.html_parts.format(
                     url=article_info["url"],
                     date=article_info["date"],
                     category=article_info["category"],
-                    title=title,
+                    title=article_info["title"],
                     description=article_info["description"]
                 )
             parts += html_parts
@@ -207,8 +209,8 @@ def main():
         return
 
     convert_md_html = ConvertMarkDownToHTML()
-    title, url, category, description = convert_md_html.execute()
-    create_index = CreateIndex(title, url, category, description)
+    file_name, title, url, category, description = convert_md_html.execute()
+    create_index = CreateIndex(file_name, title, url, category, description)
     create_index.execute()
 
 
