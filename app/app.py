@@ -36,6 +36,7 @@ class ConvertMarkDownToHTML:
         self.md_content = None  # マークダウン形式記事文字列
         self.article_title = None  # 記事タイトル
         self.article_category = None  # 記事カテゴリー
+        self.description = None  # 記事説明
 
         self.html_content = None  # HTML形式記事文字列
 
@@ -64,6 +65,12 @@ class ConvertMarkDownToHTML:
         """
         tags = self.md_content.split('\n')[2].split(' ')
         self.article_category = tags[0].strip('`')
+
+    def _get_description(self) -> None:
+        """
+        記事の説明を取得
+        """
+        self.description = self.md_content.split('\n')[4].split()
 
     def _convert_md_to_html(self) -> None:
         """
@@ -99,11 +106,12 @@ class ConvertMarkDownToHTML:
         self._get_filename()
         self._get_title()
         self._get_category()
+        self._get_description()
         self._convert_md_to_html()
         self._backup_md_file()
         url = f"https://diagonal-m.github.io/{self.article_category}/{self.file_name}.html"
 
-        return self.article_title, url
+        return self.article_title, url, self.article_category, self.description
 
 
 class CreateIndex:
@@ -199,8 +207,9 @@ def main():
         return
 
     convert_md_html = ConvertMarkDownToHTML()
-    title, url = convert_md_html.execute()
-    print(title, url)
+    title, url, category, description = convert_md_html.execute()
+    create_index = CreateIndex(title, url, category, description)
+    create_index.execute()
 
 
 if __name__ == '__main__':
