@@ -2,7 +2,7 @@
 
 `docker` `python` `jupyter notebook` `リモート`
 
-
+リモートサーバーで起動したjupyter notebookをローカルのブラウザで開けるようにする
 
 ## 1. Dockerfile・requirements.txtの記述
 
