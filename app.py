@@ -98,7 +98,7 @@ class ConvertMarkDownToHTML:
         self._get_title()
         self._get_category()
         self._convert_md_to_html()
-        # self._backup_md_file()
+        self._backup_md_file()
         url = f"https://diagonal-m.github.io/{self.article_category}/{self.file_name}.html"
 
         return self.article_title, url
