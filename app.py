@@ -4,7 +4,7 @@ writingディレクトリにある.md(マークダウンファイル)をhtmlに�
 import glob
 import shutil
 import subprocess
-from os import path, mkdir
+from os import path, mkdir, makedirs
 
 WRITING_PATH = 'writing'
 
@@ -71,7 +71,6 @@ class ConvertMarkDownToHTML:
         # カテゴリーディレクトリが存在しない場合は作成する
         if not path.exists(self.article_category):
             mkdir(self.article_category)
-            mkdir(path.join('backup', self.article_category))
 
         subprocess.run([
             "pandoc", "-s", "--toc", "--template=template/template.html",
@@ -83,8 +82,12 @@ class ConvertMarkDownToHTML:
         writingのmdファイルをバックアップする
         backup/category/xx.md
         """
+        # カテゴリーディレクトリが存在しない場合は作成する
+        backup_path = path.join('backup', self.article_category)
+        if not path.exists(backup_path):
+            makedirs(backup_path)
         # バックアップ
-        shutil.move(self.md_file_path, path.join('backup', self.article_category))
+        shutil.move(self.md_file_path, backup_path)
 
     def execute(self):
         """
