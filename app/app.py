@@ -1,6 +1,8 @@
 """
 writingディレクトリにある.md(マークダウンファイル)をhtmlに変換し、カテゴリーディレクトリに配置する
 """
+import json
+from datetime import datetime
 import glob
 import shutil
 import subprocess
@@ -102,6 +104,90 @@ class ConvertMarkDownToHTML:
         url = f"https://diagonal-m.github.io/{self.article_category}/{self.file_name}.html"
 
         return self.article_title, url
+
+
+class CreateIndex:
+    """
+    indexページを作成するためのクラス
+    """
+    def __init__(self, title, url, category, description):
+        """
+        初期化関数
+        """
+        self.title = title
+        self.url = url
+        self.category = category
+        self.description = description
+        self.parts_json = self._load_json()
+        self.html_parts = """
+        <div class="card">
+            <div class="card-body" onclick="location = '{url}';">
+                <h6 class="card-subtitle mb-2 text-muted">{date}/{category}</h6>
+                <h5 class="card-title">{title}</h5>
+                <p class="card-text">{description}</p>
+            </div>
+        </div>
+        """
+        self.html = None
+
+    @staticmethod
+    def _load_json() -> dict:
+        """
+        categories/category.jsonを辞書型として読み込む
+        """
+        with open("app/categories/category.json", "r") as f:
+            parts_json = json.load(f)
+        return parts_json
+
+    def _update_json(self) -> None:
+        """
+        新しく追加された記事の情報をcategory.jsonに書き込む
+        """
+        self.parts_json[self.category][self.title] = {
+            "date": datetime.today().strftime("%Y年%m月%d日"),
+            "category": self.category,
+            "description": self.description,
+            "url": self.url
+        }
+        with open('app/categories/category.json', mode='w', encoding='utf-8') as f:
+            json.dump(self.parts_json, f, indent=2)
+
+    def create_html_str(self) -> None:
+        """
+        self.parts_jsonを元にhtml文字列を作成する
+        """
+        with open("app/base.html", 'r') as f:
+            base_html = f.read()
+        h2_base = ' <h2 id="{category}">{category}</h2>\n'
+        parts = ""
+        for category, articles in self.parts_json.items():
+            html_parts = h2_base.format(category=category)
+            for title, article_info in articles.items():
+                html_parts += self.html_parts.format(
+                    url=article_info["url"],
+                    date=article_info["date"],
+                    category=article_info["category"],
+                    title=title,
+                    description=article_info["description"]
+                )
+            parts += html_parts
+
+        self.html = base_html.format(articles=parts)
+
+    def _update_index_html(self):
+        """
+        index.htmlをアップデートする
+        """
+        with open("index.html", "w") as f:
+            f.write(self.html)
+
+    def execute(self):
+        """
+        メイン処理
+        """
+        self._update_json()
+        self.create_html_str()
+        self._update_index_html()
 
 
 def main():

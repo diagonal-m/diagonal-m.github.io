@@ -1,0 +1,14 @@
+{ "python": {},
+  "ruby": {},
+  "ruby on rails": {},
+  "git": {},
+  "docker": {
+    "【Docker】リモートサーバでjupyter notebook": {
+      "date": "2021年7月3日",
+      "category": "docker",
+      "description": "リモードサーバーで起動したjupyter notebookをローカルのブラウザで開けるようにする",
+      "url": "https://diagonal-m.github.io/docker/docker_remote_jupyter.html"
+    }
+  },
+  "web": {}
+}
