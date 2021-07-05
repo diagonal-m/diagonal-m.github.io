@@ -1,6 +1,7 @@
 # diagonal-m.github.io
 Github Pages用リポジトリ
 
+[github-pages](https://diagonal-m.github.io/)
 
 
 ## `writing/`
