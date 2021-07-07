@@ -47,6 +47,9 @@
   <title>actions_docker</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
+.sourceCode pre {
+    overflow:auto;
+}
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
@@ -143,7 +146,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 id="githubの環境変数の設定">Githubの環境変数の設定</h2>
 <p><code>リポジトリページ</code> → <code>Settings</code> → <code>Options/SecretsNew</code> → <code>New repository secret</code>で設定することができる。</p>
 <p><a href="https://gyazo.com/c75d9b866eab1421fc04d8371fc59afb"><img src="https://i.gyazo.com/c75d9b866eab1421fc04d8371fc59afb.png" alt="Image from Gyazo" /></a></p>
-<p><a href="https://gyazo.com/2758fccf38411665909e5ead5b01f182"><img src="https://i.gyazo.com/2758fccf38411665909e5ead5b01f182.png" alt="Image from Gyazo" /></a></p>
+<p><a href="https://gyazo.com/2ffb13fd0a099bd83309e6426ae8e774"><img src="https://i.gyazo.com/2ffb13fd0a099bd83309e6426ae8e774.png" alt="Image from Gyazo" /></a></p>
+<p><a href="https://gyazo.com/2a18e14b26bc30b1eb3a344e0e3d500e"><img src="https://i.gyazo.com/2a18e14b26bc30b1eb3a344e0e3d500e.png" alt="Image from Gyazo" /></a></p>
 <h2 id="ディレクトリ構成">ディレクトリ構成</h2>
 <pre><code>actions_test
 ├── README.md
@@ -158,7 +162,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-2" title="2"></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="co"># Github Actionsのコンソールで環境変数が出力されないため以下の形式でテスト</span></a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="bu">print</span>(<span class="st">&quot;test_value&quot;</span> <span class="op">==</span> os.environ.get(<span class="st">&#39;TEST&#39;</span>))</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="bu">print</span>(<span class="st">&quot;test&quot;</span> <span class="op">==</span> os.environ.get(<span class="st">&#39;TEST&#39;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb2-5" title="5"><span class="bu">print</span>(<span class="st">&quot;test&quot;</span> <span class="op">==</span> os.environ.get(<span class="st">&#39;TEST&#39;</span>))</a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="bu">print</span>(<span class="st">&quot;test_value_2&quot;</span> <span class="op">==</span> os.environ.get(<span class="st">&#39;TEST2&#39;</span>))</a></code></pre></div>
 <h2 id="dockerdockerfile"><code>docker/Dockerfile</code></h2>
 <p><code>Dockerfile</code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">FROM</span> python:3.8.2</a>
@@ -203,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb4-19" title="19"></a>
 <a class="sourceLine" id="cb4-20" title="20">    <span class="kw">-</span> <span class="fu">name:</span><span class="at"> Run the Docker image</span></a>
 <a class="sourceLine" id="cb4-21" title="21"><span class="fu">      run:</span> <span class="st">|</span></a>
-<a class="sourceLine" id="cb4-22" title="22">        docker run -i actions:latest</a></code></pre></div>
+<a class="sourceLine" id="cb4-22" title="22">        docker run -i -e &quot;TEST2=${{ secrets.TEST2 }}&quot; actions:latest</a></code></pre></div>
 <h2 id="git-push">git push</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1">$ <span class="fu">ls</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="ex">Dockerfile</span>  README.md   app/</a>
@@ -213,17 +218,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 id="実行結果の確認">実行結果の確認</h2>
 <p>Github Actionsのコンソールで実行確認。出力結果が以下のようになっていれば成功。</p>
 <pre><code>True
-False</code></pre>
-<p><a href="https://gyazo.com/d163eff9d441c7df35cbbf439a8b3a94"><img src="https://i.gyazo.com/d163eff9d441c7df35cbbf439a8b3a94.png" alt="Image from Gyazo" /></a></p>
-<p>環境変数が無事読み込めていることが確認できた</p>
+False
+True</code></pre>
+<p><a href="https://gyazo.com/8208d7dd906856c48adacf0fb29aeb43"><img src="https://i.gyazo.com/8208d7dd906856c48adacf0fb29aeb43.png" alt="Image from Gyazo" /></a></p>
+<p>2通りの方法で環境変数が無事読み込めていることが確認できた</p>
 <h2 id="ローカル実行時">ローカル実行時</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1">$ <span class="ex">docker</span> build --build-arg test=<span class="st">&#39;test_value&#39;</span> -t actions --no-cache .</a>
 <a class="sourceLine" id="cb7-2" title="2">$ <span class="ex">docker</span> images</a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="ex">REPOSITORY</span>           TAG       IMAGE ID       CREATED          SIZE</a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="ex">actions</span>              latest    b2fd27cfdf6a   13 seconds ago   934MB</a>
-<a class="sourceLine" id="cb7-5" title="5">$ <span class="ex">docker</span> run -it --rm actions:latest                                </a>
+<a class="sourceLine" id="cb7-5" title="5">$ <span class="ex">docker</span> run -it --rm -e <span class="st">&quot;TEST2=test_value_2&quot;</span> actions:latest                                </a>
 <a class="sourceLine" id="cb7-6" title="6"><span class="ex">True</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="ex">False</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-7" title="7"><span class="ex">False</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="ex">True</span></a></code></pre></div>
             </div>
     </div>
   </div>
