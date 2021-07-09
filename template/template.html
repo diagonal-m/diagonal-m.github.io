@@ -11,7 +11,7 @@
 
     <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/diversen/pandoc-bootstrap-adaptive-template/959c3622/template.css" />
-
+    <link href='https://fonts.googleapis.com/css?family=Montserrat+Subrayada' rel='stylesheet' type='text/css'>
     <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
@@ -60,6 +60,38 @@ $if(highlighting-css)$
 .sourceCode pre {
     overflow:auto;
 }
+body {
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  background: #f6f5f4;
+}
+header {
+  width: 100%;
+  height: 20%;
+  background: #b3d874;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+header {
+  width: 100%;
+  height: 50px;
+  background: #fffafa;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-sizing: border-box;
+  display: flex; /* flexboxを作る */
+  align-items: center; /* 上下中央に揃える */
+  justify-content: space-between; /* 両端に配置 */
+  top: 0;
+}
+h1 a {
+  color: #000000;
+  font-size: 20px;
+  text-decoration: none;
+}
 $highlighting-css$
   </style>
 $endif$
@@ -74,7 +106,9 @@ $for(header-includes)$
 $endfor$
 </head>
 <body>
-
+<header>
+    <h1><a href="https://diagonal-m.github.io/">satoichi Pages</a></h1>
+</header>
 
   $if(title)$
   <div class="navbar navbar-static-top">
