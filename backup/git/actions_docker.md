@@ -18,7 +18,9 @@ Githubから提供されているワークフローを自動化するための�
 
 [![Image from Gyazo](https://i.gyazo.com/c75d9b866eab1421fc04d8371fc59afb.png)](https://gyazo.com/c75d9b866eab1421fc04d8371fc59afb)
 
-[![Image from Gyazo](https://i.gyazo.com/2758fccf38411665909e5ead5b01f182.png)](https://gyazo.com/2758fccf38411665909e5ead5b01f182)
+[![Image from Gyazo](https://i.gyazo.com/2ffb13fd0a099bd83309e6426ae8e774.png)](https://gyazo.com/2ffb13fd0a099bd83309e6426ae8e774)
+
+[![Image from Gyazo](https://i.gyazo.com/2a18e14b26bc30b1eb3a344e0e3d500e.png)](https://gyazo.com/2a18e14b26bc30b1eb3a344e0e3d500e)
 
 
 
@@ -47,6 +49,7 @@ import os
 # Github Actionsのコンソールで環境変数が出力されないため以下の形式でテスト
 print("test_value" == os.environ.get('TEST'))
 print("test" == os.environ.get('TEST'))
+print("test_value_2" == os.environ.get('TEST2'))
 ```
 
 
@@ -108,7 +111,7 @@ jobs:
 
     - name: Run the Docker image
       run: |
-        docker run -i actions:latest
+        docker run -i -e "TEST2=${{ secrets.TEST2 }}" actions:latest
 ```
 
 
@@ -136,13 +139,14 @@ Github Actionsのコンソールで実行確認。出力結果が以下のよう
 ```
 True
 False
+True
 ```
 
 
 
-[![Image from Gyazo](https://i.gyazo.com/d163eff9d441c7df35cbbf439a8b3a94.png)](https://gyazo.com/d163eff9d441c7df35cbbf439a8b3a94)
+[![Image from Gyazo](https://i.gyazo.com/8208d7dd906856c48adacf0fb29aeb43.png)](https://gyazo.com/8208d7dd906856c48adacf0fb29aeb43)
 
-環境変数が無事読み込めていることが確認できた
+2通りの方法で環境変数が無事読み込めていることが確認できた
 
 
 
@@ -153,8 +157,9 @@ $ docker build --build-arg test='test_value' -t actions --no-cache .
 $ docker images
 REPOSITORY           TAG       IMAGE ID       CREATED          SIZE
 actions              latest    b2fd27cfdf6a   13 seconds ago   934MB
-$ docker run -it --rm actions:latest                                
+$ docker run -it --rm -e "TEST2=test_value_2" actions:latest                                
 True
 False
+True
 ```
 
