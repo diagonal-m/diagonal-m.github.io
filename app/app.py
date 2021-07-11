@@ -129,7 +129,7 @@ class CreateIndex:
         self.category = category
         self.description = description
         self.parts_json = self._load_json()
-        self.html_parts = """
+        self.card_parts = """
         <div class="card">
             <div class="card-body" onclick="location = '{url}';">
                 <h6 class="card-subtitle mb-2 text-muted">{date}/{category}</h6>
@@ -138,7 +138,7 @@ class CreateIndex:
             </div>
         </div>
         """
-        self.html = None
+        self.html_dict = dict()
 
     @staticmethod
     def _load_json() -> dict:
@@ -167,30 +167,28 @@ class CreateIndex:
         """
         self.parts_jsonを元にhtml文字列を作成する
         """
-        with open("app/base.html", 'r') as f:
-            base_html = f.read()
-        h2_base = '<h2 id="{category}">{category}</h2>\n'
-        parts = ""
+        base_path = "app/template/{category}.html"
         for category, articles in self.parts_json.items():
-            html_parts = h2_base.format(category=category)
+            html_parts = ""
             for file_name, article_info in articles.items():
-                html_parts += self.html_parts.format(
+                html_parts += self.card_parts.format(
                     url=article_info["url"],
                     date=article_info["date"],
                     category=article_info["category"],
                     title=article_info["title"],
                     description=article_info["description"]
                 )
-            parts += html_parts
-
-        self.html = base_html.format(articles=parts)
+            with open(base_path.format(category)) as f:
+                base_html = f.read()
+            self.html_dict[category] = base_html.format(articles=html_parts)
 
     def _update_index_html(self):
         """
         index.htmlをアップデートする
         """
-        with open("index.html", "w") as f:
-            f.write(self.html)
+        for category, html in self.html_dict.items():
+            with open(f"index/{category}.html") as f:
+                f.write(html)
 
     def execute(self):
         """
