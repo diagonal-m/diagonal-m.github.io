@@ -78,12 +78,13 @@ class ConvertMarkDownToHTML:
         参考: https://dev.classmethod.jp/articles/pandoc-markdown2html/
         """
         # カテゴリーディレクトリが存在しない場合は作成する
-        if not path.exists(self.article_category):
-            mkdir(self.article_category)
+        article_category_path = path.join('article', self.article_category)
+        if not path.exists(article_category_path):
+            mkdir(article_category_path)
 
         subprocess.run([
             "pandoc", "-s", "--toc", "--template=template/template.html",
-            f"{self.md_file_path}", "-o", f"{self.article_category}/{self.file_name}.html"
+            f"{self.md_file_path}", "-o", f"{article_category_path}/{self.file_name}.html"
         ])
 
     def _backup_md_file(self):
@@ -109,7 +110,7 @@ class ConvertMarkDownToHTML:
         self._get_description()
         self._convert_md_to_html()
         self._backup_md_file()
-        url = f"https://diagonal-m.github.io/{self.article_category}/{self.file_name}.html"
+        url = f"https://diagonal-m.github.io/article{self.article_category}/{self.file_name}.html"
 
         return self.file_name, self.article_title, url, self.article_category, self.description
 
