@@ -26,25 +26,15 @@
             border-left: solid 5px #7db4e6;/*左線*/
             border-bottom: solid 3px #d7d7d7;/*下線*/
         }
+        h2:hover {
+            background-color: lightcyan;
+            box-shadow: 0 0 5px -1px gray;
+        }
         #content {
             width: 60%;
             margin: 10px auto;
             overflow-x: hidden;
             flex: 1;
-        }
-        .card {
-            background-color: white; /* 色変更 */
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            border-radius:10px;
-            border:1px solid #f5f5f5;
-            margin: 5px auto;
-            display: inline-block;
-            width: 100%;
-            transition: all 250ms 0ms ease;
-        }
-        .card:hover {
-            background-color: lightcyan;
-            box-shadow: 0 0 5px -1px gray;
         }
     </style>
 </head>
@@ -81,29 +71,12 @@
 </nav>
 <header></header>
 <div id="content">
-    <h2 id="python">python</h2>
-<h2 id="ruby">ruby</h2>
-<h2 id="ruby on rails">ruby on rails</h2>
-<h2 id="git">git</h2>
-
-        <div class="card">
-            <div class="card-body" onclick="location = 'article/git/actions_docker.html';">
-                <h6 class="card-subtitle mb-2 text-muted">2021年07月10日/git</h6>
-                <h5 class="card-title">Github Actionsでdocker run</h5>
-                <p class="card-text">Github Actionsでpushをトリガーにdocker runでpythonスクリプトを実行し、Githubで設定した環境変数を出力する。</p>
-            </div>
-        </div>
-        <h2 id="docker">docker</h2>
-
-        <div class="card">
-            <div class="card-body" onclick="location = 'article/docker/docker_remote_jupyter.html';">
-                <h6 class="card-subtitle mb-2 text-muted">2021年07月10日/docker</h6>
-                <h5 class="card-title">【Docker】リモートサーバでjupyter notebook</h5>
-                <p class="card-text">リモートサーバーで起動したjupyter notebookをローカルのブラウザで開けるようにする</p>
-            </div>
-        </div>
-        <h2 id="web">web</h2>
-
+    <a onclick="location = 'index/python.html';"><h2 id="python">python</h2></a>
+    <a onclick="location = 'index/ruby.html';"><h2 id="ruby">ruby</h2></a>
+    <a onclick="location = 'index/rails.html';"><h2 id="ruby on rails">ruby on rails</h2></a>
+    <a onclick="location = 'index/git.html';"><h2 id="git">git</h2></a>
+    <a onclick="location = 'index/docker.html';"><h2 id="docker">docker</h2></a>
+    <a onclick="location = 'index/web.html';"><h2 id="web">web</h2></a>
 </div>
 </body>
 </html>
