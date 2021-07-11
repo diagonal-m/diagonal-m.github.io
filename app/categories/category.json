@@ -8,7 +8,7 @@
       "date": "2021\u5e7407\u670810\u65e5",
       "category": "git",
       "description": "Github Actions\u3067push\u3092\u30c8\u30ea\u30ac\u30fc\u306bdocker run\u3067python\u30b9\u30af\u30ea\u30d7\u30c8\u3092\u5b9f\u884c\u3057\u3001Github\u3067\u8a2d\u5b9a\u3057\u305f\u74b0\u5883\u5909\u6570\u3092\u51fa\u529b\u3059\u308b\u3002",
-      "url": "https://diagonal-m.github.io/git/actions_docker.html"
+      "url": "https://diagonal-m.github.io/article/git/actions_docker.html"
     }
   },
   "docker": {
@@ -17,7 +17,7 @@
       "date": "2021\u5e7407\u670810\u65e5",
       "category": "docker",
       "description": "\u30ea\u30e2\u30fc\u30c8\u30b5\u30fc\u30d0\u30fc\u3067\u8d77\u52d5\u3057\u305fjupyter notebook\u3092\u30ed\u30fc\u30ab\u30eb\u306e\u30d6\u30e9\u30a6\u30b6\u3067\u958b\u3051\u308b\u3088\u3046\u306b\u3059\u308b",
-      "url": "https://diagonal-m.github.io/docker/docker_remote_jupyter.html"
+      "url": "https://diagonal-m.github.io/article/docker/docker_remote_jupyter.html"
     }
   },
   "web": {}
