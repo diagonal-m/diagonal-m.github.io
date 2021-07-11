@@ -83,7 +83,7 @@ class ConvertMarkDownToHTML:
             mkdir(article_category_path)
 
         subprocess.run([
-            "pandoc", "-s", "--toc", "--template=template/template.html",
+            "pandoc", "-s", "--toc", "--template=app/template/template.html",
             f"{self.md_file_path}", "-o", f"{article_category_path}/{self.file_name}.html"
         ])
 
