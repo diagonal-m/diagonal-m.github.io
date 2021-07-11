@@ -75,7 +75,7 @@ ARG test
 ENV TEST=$test
 
 # /tmpにappとdockerをコピー
-COPY ../backup/git /tmp
+COPY . /tmp
 
 # 相対パスの基準ディレクトリ
 WORKDIR /tmp
