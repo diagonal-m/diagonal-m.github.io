@@ -178,7 +178,7 @@ class CreateIndex:
                     title=article_info["title"],
                     description=article_info["description"]
                 )
-            with open(base_path.format(category)) as f:
+            with open(base_path.format(category=category)) as f:
                 base_html = f.read()
             self.html_dict[category] = base_html.format(articles=html_parts)
 
@@ -187,7 +187,7 @@ class CreateIndex:
         index.htmlをアップデートする
         """
         for category, html in self.html_dict.items():
-            with open(f"index/{category}.html") as f:
+            with open(f"index/{category}.html", "w") as f:
                 f.write(html)
 
     def execute(self):

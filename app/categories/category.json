@@ -1,7 +1,7 @@
 {
   "python": {},
   "ruby": {},
-  "ruby on rails": {},
+  "rails": {},
   "git": {
     "actions_docker": {
       "title": "Github Actions\u3067docker run",
