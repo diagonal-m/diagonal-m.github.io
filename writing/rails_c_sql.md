@@ -1,6 +1,6 @@
 # 【Rails】rails consoleでSQL確認
 
- `rails` `Ruby on Rails` `sql`
+`rails` `Ruby on Rails` `sql`
 
 rails consoleでSQLを実行する方法とメソッドのsql文字列を得る方法
 
