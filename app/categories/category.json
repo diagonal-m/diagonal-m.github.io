@@ -1,7 +1,15 @@
 {
   "python": {},
   "ruby": {},
-  "rails": {},
+  "rails": {
+    "rails_c_sql": {
+      "title": "\u3010Rails\u3011rails console\u3067SQL\u78ba\u8a8d",
+      "date": "2021\u5e7407\u670814\u65e5",
+      "category": "rails",
+      "description": "rails console\u3067SQL\u3092\u5b9f\u884c\u3059\u308b\u65b9\u6cd5\u3068\u30e1\u30bd\u30c3\u30c9\u306esql\u6587\u5b57\u5217\u3092\u5f97\u308b\u65b9\u6cd5",
+      "url": "https://diagonal-m.github.io/article/rails/rails_c_sql.html"
+    }
+  },
   "git": {
     "actions_docker": {
       "title": "Github Actions\u3067docker run",
