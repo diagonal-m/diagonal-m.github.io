@@ -25,6 +25,13 @@
       "category": "docker",
       "description": "docker\u3067\u65e5\u672c\u8a9e\u306e\u81ea\u7136\u8a00\u8a9e\u51e6\u7406\u74b0\u5883\u3092\u69cb\u7bc9\u3059\u308b\u3002",
       "url": "https://diagonal-m.github.io/article/docker/docker_nlp.html"
+    },
+    "docker_rails_react": {
+      "title": "\u3010Docker\u3011rails6\u00d7react\u00d7MySQL\u74b0\u5883\u69cb\u7bc9",
+      "date": "2021\u5e7407\u670814\u65e5",
+      "category": "docker",
+      "description": "Docker\u3067Rails6\u00d7React\u00d7MySQL\u306e\u958b\u767a\u74b0\u5883\u3092\u69cb\u7bc9\u3059\u308b\u3002",
+      "url": "https://diagonal-m.github.io/article/docker/docker_rails_react.html"
     }
   },
   "web": {}
