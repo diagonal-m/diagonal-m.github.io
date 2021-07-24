@@ -10,7 +10,7 @@
 
 Githubにあるリポジトリを自分のリポジトリにforkする。リポジトリにアクセスして、右上の「Fork」ボタンを押下。
 
-<a href="https://gyazo.com/a0eafc970dbc7ee420a31bbd2881de3f"><img src="https://i.gyazo.com/a0eafc970dbc7ee420a31bbd2881de3f.png" alt="Image from Gyazo" style="zoom:50%;" /></a>
+![img](https://i.gyazo.com/a0eafc970dbc7ee420a31bbd2881de3f.png)
 
 自分のリポジトリにフォーク(コピー)される。
 
