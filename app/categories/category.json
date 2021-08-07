@@ -1,6 +1,14 @@
 {
   "python": {},
-  "ruby": {},
+  "ruby": {
+    "ruby_dacktyping": {
+      "title": "\u3010Ruby\u3011\u30c0\u30c3\u30b0\u30bf\u30a4\u30d4\u30f3\u30b0",
+      "date": "2021\u5e7408\u670808\u65e5",
+      "category": "ruby",
+      "description": "\u30c0\u30c3\u30b0\u30bf\u30a4\u30d4\u30f3\u30b0\u306b\u3064\u3044\u3066",
+      "url": "https://diagonal-m.github.io/article/ruby/ruby_dacktyping.html"
+    }
+  },
   "rails": {
     "rails_c_sql": {
       "title": "\u3010Rails\u3011rails console\u3067SQL\u78ba\u8a8d",
