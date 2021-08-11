@@ -57,5 +57,6 @@
       "url": "https://diagonal-m.github.io/article/docker/docker_rails_react.html"
     }
   },
-  "web": {}
+  "web": {},
+  "front": {}
 }
